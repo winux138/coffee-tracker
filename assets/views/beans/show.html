@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+View beans: {{ item.id }}
+{% endblock title %}
+
+{% block page_title %}
+View beans: {{ item.id }}
+{% endblock page_title %}
+
+
+{% block content %}
+<div class="mb-10">
+    <div>
+    <label><b>{{"roaster" | capitalize }}:</b> {{item.roaster}}</label>
+    </div>
+<div>
+    <label><b>{{"name" | capitalize }}:</b> {{item.name}}</label>
+    </div>
+<div>
+    <label><b>{{"comment" | capitalize }}:</b> {{item.comment}}</label>
+    </div>
+<br />
+<a href="/beans">Back to beans</a>
+</div>
+{% endblock content %}
