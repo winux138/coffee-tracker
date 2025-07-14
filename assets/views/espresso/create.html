@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create espresso
+{% endblock title %}
+
+{% block page_title %}
+Create new espresso
+{% endblock page_title %}
+
+{% block content %}
+<div class="mb-10">
+    <div id="error-message" class="mt-4 text-sm text-red-600"></div>
+    <form hx-post="/espressos" hx-ext="submitjson" class="flex-1 lg:max-w-2xl">
+        <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">machine</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="machine" name="machine" type="text" value="" required />
+</div>
+        <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">dose_in</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" min="-179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" max="179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" id="dose_in" name="dose_in" type="number" value="" required step="0.1" />
+</div>
+        <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">dose_out</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" min="-340282350000000000000000000000000000000" max="340282350000000000000000000000000000000" id="dose_out" name="dose_out" type="number" value="" required step="0.1" />
+</div>
+        <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">temperature</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" min="-2147483648" max="2147483647" id="temperature" name="temperature" type="number" value=""  step="1" />
+</div>
+        <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">comment</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="comment" name="comment" type="text" value=""  />
+</div>
+        <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">basket</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="basket" name="basket" type="text" value="" required />
+</div>
+        <div class="mt-5">
+            <button class=" text-xs py-3 px-6 rounded-lg bg-gray-900 text-white" type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>
+{% endblock content %}
+
+{% block js %}
+
+{% endblock js %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+View espresso: {{ item.id }}
+{% endblock title %}
+
+{% block page_title %}
+View espresso: {{ item.id }}
+{% endblock page_title %}
+
+
+{% block content %}
+<div class="mb-10">
+    <div>
+    <label><b>{{"machine" | capitalize }}:</b> {{item.machine}}</label>
+    </div>
+<div>
+    <label><b>{{"dose_in" | capitalize }}:</b> {{item.dose_in}}</label>
+    </div>
+<div>
+    <label><b>{{"dose_out" | capitalize }}:</b> {{item.dose_out}}</label>
+    </div>
+<div>
+    <label><b>{{"temperature" | capitalize }}:</b> {{item.temperature}}</label>
+    </div>
+<div>
+    <label><b>{{"comment" | capitalize }}:</b> {{item.comment}}</label>
+    </div>
+<div>
+    <label><b>{{"basket" | capitalize }}:</b> {{item.basket}}</label>
+    </div>
+<br />
+<a href="/espressos">Back to espressos</a>
+</div>
+{% endblock content %}
