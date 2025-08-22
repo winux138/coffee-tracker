@@ -1,10 +1,10 @@
 #![allow(clippy::missing_errors_doc)]
 #![allow(clippy::unnecessary_struct_initialization)]
 #![allow(clippy::unused_async)]
-use loco_rs::prelude::*;
-use serde::{Deserialize, Serialize};
-use sea_orm::{sea_query::Order, QueryOrder};
 use axum::debug_handler;
+use loco_rs::prelude::*;
+use sea_orm::{sea_query::Order, QueryOrder};
+use serde::{Deserialize, Serialize};
 
 use crate::{
     models::_entities::beans::{ActiveModel, Column, Entity, Model},
@@ -16,14 +16,14 @@ pub struct Params {
     pub roaster: String,
     pub name: String,
     pub comment: Option<String>,
-    }
+}
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.roaster = Set(self.roaster.clone());
-      item.name = Set(self.name.clone());
-      item.comment = Set(self.comment.clone());
-      }
+        item.roaster = Set(self.roaster.clone());
+        item.name = Set(self.name.clone());
+        item.comment = Set(self.comment.clone());
+    }
 }
 
 async fn load_item(ctx: &AppContext, id: i32) -> Result<Model> {
@@ -85,10 +85,7 @@ pub async fn show(
 }
 
 #[debug_handler]
-pub async fn add(
-    State(ctx): State<AppContext>,
-    Json(params): Json<Params>,
-) -> Result<Response> {
+pub async fn add(State(ctx): State<AppContext>, Json(params): Json<Params>) -> Result<Response> {
     let mut item = ActiveModel {
         ..Default::default()
     };

@@ -1,5 +1,5 @@
+pub use super::_entities::espressos::{ActiveModel, Entity, Model};
 use sea_orm::entity::prelude::*;
-pub use super::_entities::espressos::{ActiveModel, Model, Entity};
 pub type Espressos = Entity;
 
 #[async_trait::async_trait]

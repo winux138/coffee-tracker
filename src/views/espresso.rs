@@ -1,6 +1,6 @@
 use loco_rs::prelude::*;
 
-use crate::models::_entities::{espressos, beans};
+use crate::models::_entities::{beans, espressos};
 
 /// Render a list view of `espressos`.
 ///

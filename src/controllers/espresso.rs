@@ -1,13 +1,16 @@
 #![allow(clippy::missing_errors_doc)]
 #![allow(clippy::unnecessary_struct_initialization)]
 #![allow(clippy::unused_async)]
-use loco_rs::prelude::*;
-use serde::{Deserialize, Serialize, Deserializer};
-use sea_orm::{sea_query::Order, QueryOrder};
 use axum::debug_handler;
+use loco_rs::prelude::*;
+use sea_orm::{sea_query::Order, QueryOrder};
+use serde::{Deserialize, Deserializer, Serialize};
 
 use crate::{
-    models::_entities::{espressos::{ActiveModel, Column, Entity, Model}, beans},
+    models::_entities::{
+        beans,
+        espressos::{ActiveModel, Column, Entity, Model},
+    },
     views,
 };
 
@@ -30,19 +33,19 @@ pub struct Params {
     pub grind_size: i32,
     #[serde(deserialize_with = "deserialize_string_to_i32")]
     pub bean_id: i32,
-    }
+}
 
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
-      item.machine = Set(self.machine.clone());
-      item.dose_in = Set(self.dose_in);
-      item.dose_out = Set(self.dose_out);
-      item.temperature = Set(self.temperature);
-      item.comment = Set(self.comment.clone());
-      item.basket = Set(self.basket.clone());
-      item.bean_id = Set(self.bean_id);
-      item.grind_size = Set(self.grind_size);
-      }
+        item.machine = Set(self.machine.clone());
+        item.dose_in = Set(self.dose_in);
+        item.dose_out = Set(self.dose_out);
+        item.temperature = Set(self.temperature);
+        item.comment = Set(self.comment.clone());
+        item.basket = Set(self.basket.clone());
+        item.bean_id = Set(self.bean_id);
+        item.grind_size = Set(self.grind_size);
+    }
 }
 
 async fn load_item(ctx: &AppContext, id: i32) -> Result<Model> {
@@ -105,10 +108,7 @@ pub async fn show(
 }
 
 #[debug_handler]
-pub async fn add(
-    State(ctx): State<AppContext>,
-    Json(params): Json<Params>,
-) -> Result<Response> {
+pub async fn add(State(ctx): State<AppContext>, Json(params): Json<Params>) -> Result<Response> {
     let mut item = ActiveModel {
         ..Default::default()
     };
