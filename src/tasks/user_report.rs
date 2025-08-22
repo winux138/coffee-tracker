@@ -14,7 +14,7 @@ impl Task for UserReport {
     async fn run(&self, _app_context: &AppContext, _vars: &task::Vars) -> Result<()> {
         // println!("Task UserReport generated");
         let users = users::Entity::find().all(&_app_context.db).await?;
-        users.iter().for_each(|e| println!("User: {:?}", e));
+        users.iter().for_each(|e| println!("User: {e:?}"));
         Ok(())
     }
 }

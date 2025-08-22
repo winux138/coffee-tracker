@@ -108,8 +108,7 @@ async fn can_login_with_verify(#[case] test_name: &str, #[case] password: &str) 
 
         assert!(
             user.email_verified_at.is_some(),
-            "Expected the email to be verified, but it was not. User: {:?}",
-            user
+            "Expected the email to be verified, but it was not. User: {user:?}"
         );
 
         with_settings!({
