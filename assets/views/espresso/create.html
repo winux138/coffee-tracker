@@ -37,8 +37,16 @@ Create new espresso
     <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="basket" name="basket" type="text" value="" required />
 </div>
         <div class="space-y-2">
+    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">beans</label>
+    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="beans" name="beans" type="text" value="required"  />
+</div>
+        <div class="space-y-2">
     <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">comment</label>
-    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="comment" name="comment" type="text" value=""  />
+<select id="beans_id" name="beans_id">
+        {% for bean in beans %}
+            <option value="{{ beans.id }}">{{ beans.name }}</option>
+        {% endfor %}
+    </select>
 </div>
         <div class="mt-5">
             <button class=" text-xs py-3 px-6 rounded-lg bg-gray-900 text-white" type="submit">Submit</button>

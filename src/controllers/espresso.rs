@@ -19,6 +19,8 @@ pub struct Params {
     pub temperature: Option<i32>,
     pub comment: Option<String>,
     pub basket: String,
+    pub grind_size: i32,
+    pub bean_id: i32,
     }
 
 impl Params {
@@ -29,6 +31,8 @@ impl Params {
       item.temperature = Set(self.temperature.clone());
       item.comment = Set(self.comment.clone());
       item.basket = Set(self.basket.clone());
+      item.bean_id = Set(self.bean_id.clone());
+      item.grind_size = Set(self.grind_size.clone());
       }
 }
 
