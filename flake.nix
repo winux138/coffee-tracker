@@ -7,30 +7,27 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs =
-    {
-      flake-utils,
-      nixpkgs,
-      rust-overlay,
-      ...
-    }:
+  outputs = {
+    flake-utils,
+    nixpkgs,
+    rust-overlay,
+    ...
+  }:
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        overlays = [ (import rust-overlay) ];
+      system: let
+        overlays = [(import rust-overlay)];
         pkgs = import nixpkgs {
           inherit system overlays;
         };
-      in
-      {
-        devShells.default =
-          with pkgs;
+      in {
+        devShells.default = with pkgs;
           mkShell {
             buildInputs = [
               openssl
               pkg-config
               loco
               sea-orm-cli
+              cargo-watch
 
               (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
             ];
