@@ -35,13 +35,13 @@ pub struct Params {
 impl Params {
     fn update(&self, item: &mut ActiveModel) {
       item.machine = Set(self.machine.clone());
-      item.dose_in = Set(self.dose_in.clone());
-      item.dose_out = Set(self.dose_out.clone());
-      item.temperature = Set(self.temperature.clone());
+      item.dose_in = Set(self.dose_in);
+      item.dose_out = Set(self.dose_out);
+      item.temperature = Set(self.temperature);
       item.comment = Set(self.comment.clone());
       item.basket = Set(self.basket.clone());
-      item.bean_id = Set(self.bean_id.clone());
-      item.grind_size = Set(self.grind_size.clone());
+      item.bean_id = Set(self.bean_id);
+      item.grind_size = Set(self.grind_size);
       }
 }
 
