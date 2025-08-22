@@ -28,6 +28,7 @@
               loco
               sea-orm-cli
               cargo-watch
+              cargo-insta
 
               (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
             ];
