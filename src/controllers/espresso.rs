@@ -2,14 +2,22 @@
 #![allow(clippy::unnecessary_struct_initialization)]
 #![allow(clippy::unused_async)]
 use loco_rs::prelude::*;
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize, Deserializer};
 use sea_orm::{sea_query::Order, QueryOrder};
 use axum::debug_handler;
 
 use crate::{
-    models::_entities::espressos::{ActiveModel, Column, Entity, Model},
+    models::_entities::{espressos::{ActiveModel, Column, Entity, Model}, beans},
     views,
 };
+
+fn deserialize_string_to_i32<'de, D>(deserializer: D) -> Result<i32, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s = String::deserialize(deserializer)?;
+    s.parse::<i32>().map_err(serde::de::Error::custom)
+}
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Params {
@@ -20,6 +28,7 @@ pub struct Params {
     pub comment: Option<String>,
     pub basket: String,
     pub grind_size: i32,
+    #[serde(deserialize_with = "deserialize_string_to_i32")]
     pub bean_id: i32,
     }
 
@@ -56,9 +65,10 @@ pub async fn list(
 #[debug_handler]
 pub async fn new(
     ViewEngine(v): ViewEngine<TeraView>,
-    State(_ctx): State<AppContext>,
+    State(ctx): State<AppContext>,
 ) -> Result<Response> {
-    views::espresso::create(&v)
+    let beans = beans::Entity::find().all(&ctx.db).await?;
+    views::espresso::create(&v, &beans)
 }
 
 #[debug_handler]

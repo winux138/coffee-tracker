@@ -1,6 +1,6 @@
 use loco_rs::prelude::*;
 
-use crate::models::_entities::espressos;
+use crate::models::_entities::{espressos, beans};
 
 /// Render a list view of `espressos`.
 ///
@@ -25,8 +25,8 @@ pub fn show(v: &impl ViewRenderer, item: &espressos::Model) -> Result<Response> 
 /// # Errors
 ///
 /// When there is an issue with rendering the view.
-pub fn create(v: &impl ViewRenderer) -> Result<Response> {
-    format::render().view(v, "espresso/create.html", data!({}))
+pub fn create(v: &impl ViewRenderer, beans: &Vec<beans::Model>) -> Result<Response> {
+    format::render().view(v, "espresso/create.html", data!({"beans": beans}))
 }
 
 /// Render a `espresso` edit form.

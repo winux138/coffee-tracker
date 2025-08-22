@@ -38,15 +38,16 @@ Create new espresso
 </div>
         <div class="space-y-2">
     <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">beans</label>
-    <input class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="beans" name="beans" type="text" value="required"  />
+        <select class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm md:text-sm" id="beans_id" name="beans_id" required>
+            <option value="" disabled selected>Select a bean</option>
+            {% for bean in beans %}
+                <option value="{{ bean.id }}">{{ bean.name }} ({{ bean.roaster }})</option>
+            {% endfor %}
+        </select>
 </div>
         <div class="space-y-2">
     <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" for=":r2l:-form-item">comment</label>
-<select id="beans_id" name="beans_id">
-        {% for bean in beans %}
-            <option value="{{ beans.id }}">{{ beans.name }}</option>
-        {% endfor %}
-    </select>
+    <textarea class="flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm md:text-sm" id="comment" name="comment" rows="3"></textarea>
 </div>
         <div class="mt-5">
             <button class=" text-xs py-3 px-6 rounded-lg bg-gray-900 text-white" type="submit">Submit</button>
